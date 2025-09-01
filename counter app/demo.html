@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Animated Counter App</title>
+    <style>
+        body {
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            background: #f0f4f8;
+            font-family: Arial, sans-serif;
+        }
+        .counter-container {
+            background: #fff;
+            padding: 40px 60px;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .counter {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #3498db;
+            margin-bottom: 30px;
+            transition: transform 0.2s;
+            animation: pop 0.3s;
+        }
+        @keyframes pop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        .btn {
+            background: #3498db;
+            color: #fff;
+            border: none;
+            outline: none;
+            padding: 12px 28px;
+            margin: 0 10px;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn:hover {
+            background: #217dbb;
+        }
+    </style>
+</head>
+<body>
+    <div class="counter-container">
+        <div id="counter" class="counter">0</div>
+        <button class="btn" onclick="changeCounter(-1)">-</button>
+        <button class="btn" onclick="changeCounter(1)">+</button>
+    </div>
+    <script>
+        let count = 0;
+        const counterEl = document.getElementById('counter');
+        function changeCounter(val) {
+            count += val;
+            counterEl.textContent = count;
+            counterEl.style.animation = 'none';
+            void counterEl.offsetWidth; // trigger reflow
+            counterEl.style.animation = 'pop 0.3s';
+        }
+    </script>
+</body>
+</html>
